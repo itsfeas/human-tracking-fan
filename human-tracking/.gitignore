@@ -3,3 +3,5 @@ __pycache__
 /.vscode
 /videos/
 /frames/
+/darknet/
+/ssd_mobilenet_v3_large_coco_2020_01_14/

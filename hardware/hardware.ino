@@ -9,4 +9,6 @@ void loop() {
   delay(1000);            // waits for a second
   digitalWrite(13, LOW); // sets the digital pin 13 on
   delay(1000);            // waits for a second
+  //Remember that analog pins are denoted by A0, A1, etc
+  //Digital pins are denoted with simple integers upto 13
 }
