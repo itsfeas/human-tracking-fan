@@ -8,8 +8,6 @@ import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 import cv2
 import time
-import serial
-
 
 class DetectorAPI:
     def __init__(self, path_to_ckpt):
@@ -70,36 +68,29 @@ class DetectorAPI:
 
 
 if __name__ == "__main__":
-    MODEL_NAME = './ssd_mobilenet_v1_coco_2017_11_17'
+    MODEL_FOLDER = 'resources/'
+    MODEL_NAME = 'ssd_mobilenet_v1_coco_2017_11_17'
     # MODEL_NAME = './ssd_mobilenet_v3_large_coco_2020_01_14'
-    model_path = MODEL_NAME+'/frozen_inference_graph.pb'
+    model_path = MODEL_FOLDER+MODEL_NAME+'/frozen_inference_graph.pb'
     odapi = DetectorAPI(path_to_ckpt=model_path)
     threshold = 0.6
-    cap = cv2.VideoCapture('videos/vid1.mp4')
-
-    ser = serial.Serial()
-    ser.baudrate = 19200
-    ser.port = 'COM3'
-    ser.open()
-    if ser.is_open:
-        print("serial connection initiated!")
-    else:
-        print("serial connection failed!")
 
     shift = (0,0)
     prev_pos = (0,0)
     current_pos = (0,0)
     vel_check = False
     while True:
-        r, img = cap.read()
+        cam_no = 0
+        feed = cv2.VideoCapture(cam_no)
+        r, img = feed.read()
         # img = cv2.resize(img, (1280, 720))
         height, width, channels = img.shape
-        img = cv2.resize(img, (width//4, height//4))
-        width, height = width//4, height//4
+        # img = cv2.resize(img, (width//4, height//4))
+        # width, height = width//4, height//4
         boxes, scores, classes, num = odapi.processFrame(img)
 
         # Visualization of the results of a detection.
-
+        pos_data = []
         for i in range(len(boxes)):
             # Class 1 represents human
             if classes[i] == 1 and scores[i] > threshold:
@@ -113,11 +104,9 @@ if __name__ == "__main__":
                     shift = (current_pos[0]-prev_pos[0], current_pos[1]-prev_pos[1])
                     # print("prev", prev_pos,"current_pos", current_pos)
                     if shift[1]>0:
-                        print("human shifted right by", abs(shift[1]/width), "%")
-                        ser.write(b'r'+bin(100*shift[1]/width))
+                        print("human shifted right by", 100*abs(shift[1]/width), "%")
                     elif shift[1]<0:
-                        print("human shifted left by", abs(shift[1]/width), "%")
-                        ser.write(b'l'+bin(100*shift[1]/width))
+                        print("human shifted left by", 100*abs(shift[1]/width), "%")
                 vel_check = True
 
         cv2.imshow("preview", img)
@@ -125,4 +114,3 @@ if __name__ == "__main__":
         if key & 0xFF == ord('q'):
             cv2.destroyAllWindows
             break
-    ser.close()
