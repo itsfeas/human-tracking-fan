@@ -78,8 +78,8 @@ if __name__ == "__main__":
     threshold = 0.6
 
     ser = serial.Serial()
-    ser.baudrate = 19200
-    ser.port = 'COM3'
+    ser.baudrate = 9600
+    ser.port = 'COM4'
     ser.open()
     if ser.is_open:
         print("serial connection initiated!")
@@ -91,7 +91,7 @@ if __name__ == "__main__":
     current_pos = (0, 0)
     vel_check = False
     while True:
-        cam_no = 0
+        cam_no = 1
         feed = cv2.VideoCapture(cam_no)
         r, img = feed.read()
         # img = cv2.resize(img, (1280, 720))
