@@ -110,20 +110,28 @@ if __name__ == "__main__":
                 # print(center)
                 cv2.circle(img, center, 5, (0, 0, 255), -1)
                 if vel_check:
-                    prev_pos = current_pos
-                    current_pos = center
-                    shift = (current_pos[0]-prev_pos[0],
-                             current_pos[1]-prev_pos[1])
+                    calc_pos = center
+                    shift = (calc_pos[0]-prev_pos[0],
+                             calc_pos[1]-prev_pos[1])
                     # print("prev", prev_pos,"current_pos", current_pos)
                     if shift[1] > 0:
-                        print("human shifted right by",
-                              100*abs(shift[1]/width), "%")
-                        ser.write("r05".encode())
+                        if 100*abs(shift[1]/width)>1:
+                            prev_pos = current_pos
+                            current_pos = center
+                            print("human shifted right by",
+                                100*abs(shift[1]/width), "%")
+                            ser.write("r03".encode())
                     elif shift[1] < 0:
-                        print("human shifted left by",
-                              100*abs(shift[1]/width), "%")
-                        ser.write("l05".encode())
-                vel_check = True
+                        if 100*abs(shift[1]/width) > 1:
+                            prev_pos = current_pos
+                            current_pos = center
+                            print("human shifted left by",
+                                100*abs(shift[1]/width), "%")
+                            ser.write("l03".encode())
+                    else:
+                        prev_pos = center
+                        current_pos = center
+                        vel_check = True
 
         cv2.imshow("preview", img)
         key = cv2.waitKey(1)
