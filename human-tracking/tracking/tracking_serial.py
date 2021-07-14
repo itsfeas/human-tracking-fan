@@ -115,14 +115,14 @@ if __name__ == "__main__":
                              calc_pos[1]-prev_pos[1])
                     # print("prev", prev_pos,"current_pos", current_pos)
                     if shift[1] > 0:
-                        if 100*abs(shift[1]/width)>1:
+                        if 100*abs(shift[1]/width)>0:
                             prev_pos = current_pos
                             current_pos = center
                             print("human shifted right by",
                                 100*abs(shift[1]/width), "%")
                             ser.write("r03".encode())
                     elif shift[1] < 0:
-                        if 100*abs(shift[1]/width) > 1:
+                        if 100*abs(shift[1]/width) > 0:
                             prev_pos = current_pos
                             current_pos = center
                             print("human shifted left by",
