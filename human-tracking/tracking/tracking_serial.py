@@ -128,10 +128,10 @@ if __name__ == "__main__":
                             print("human shifted left by",
                                 100*abs(shift[1]/width), "%")
                             ser.write("l03".encode())
-                    else:
-                        prev_pos = center
-                        current_pos = center
-                        vel_check = True
+                else:
+                    prev_pos = center
+                    current_pos = center
+                    vel_check = True
 
         cv2.imshow("preview", img)
         key = cv2.waitKey(1)
