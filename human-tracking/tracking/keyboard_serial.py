@@ -18,9 +18,9 @@ if __name__ == "__main__":
     else:
         print("serial connection failed!")
 
+    cam_no = 0
+    feed = cv2.VideoCapture(cam_no)
     while True:
-        cam_no = 0
-        feed = cv2.VideoCapture(cam_no)
         r, img = feed.read()
         # img = cv2.resize(img, (1280, 720))
         height, width, channels = img.shape
@@ -30,10 +30,14 @@ if __name__ == "__main__":
         # Visualization of the results of a detection.
         pos_data = []
         cv2.imshow("preview", img)
-        key = cv2.waitKey(0)
+        key = cv2.waitKey(1)
         if key == ord('a'):
             ser.write("l03\n".encode())
+            key="x"
         elif key == ord('d'):
             ser.write("r03\n".encode())
+            key="x"
         elif key == ord('q'):
             break
+        else:
+            pass
