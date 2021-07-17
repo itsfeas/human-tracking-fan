@@ -108,7 +108,9 @@ if __name__ == "__main__":
                 box = boxes[i]
                 center = ((box[1]+box[3])//2, (box[0]+box[2])//2)
                 # print(center)
-                cv2.circle(img, center, 5, (0, 0, 255), -1)
+                radius = 50*(abs(box[1]-box[3])+ abs(box[0]-box[2]))//width
+                print(radius)
+                cv2.circle(img, center, radius, (0, 0, 255), -1)
                 if vel_check:
                     calc_pos = center
                     shift = (calc_pos[0]-prev_pos[0],
