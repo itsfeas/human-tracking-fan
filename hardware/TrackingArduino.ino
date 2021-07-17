@@ -25,9 +25,8 @@ const int stepsPerRevolution = 800;  // change this to fit the number of steps p
 // for your motor
 
 // initialize the stepper library on pins 8 through 11:
-Stepper myStepper(stepsPerRevolution, 2, 3);
+Stepper myStepper(stepsPerRevolution, 8, 9);
 
-int stepCount = 0;         // number of steps the motor has taken
 
 void setup() {
   // initialize the serial port:
@@ -38,8 +37,24 @@ void setup() {
 void loop() {
   // step one step:
   if (Serial.available()>0){
-    if (Serial.readStringUntil('\n') == "l05") myStepper.step(14);
-    else if (Serial.readStringUntil('\n') == "r05") myStepper.step(-14);  
+    //Serial.print(Serial.readStringUntil('\n'));
+    String message = Serial.readStringUntil('\n');
+    if (message == "l01") {myStepper.setSpeed(1000); myStepper.step(2);}
+    else if (message == "l02") {myStepper.setSpeed(1500); myStepper.step(4);}
+    else if (message == "l03") {myStepper.setSpeed(1000); myStepper.step(6);}  
+    else if (message == "l04") {myStepper.setSpeed(1000); myStepper.step(8);} 
+    else if (message == "l05") {myStepper.setSpeed(1000); myStepper.step(10);}
+    else if (message == "l10") {myStepper.setSpeed(1000); myStepper.step(6);}  
+    else if (message == "l15") {myStepper.setSpeed(1000); myStepper.step(8);} 
+    else if (message == "l20") {myStepper.setSpeed(1000); myStepper.step(10);}    
+    else if (message == "r01") {myStepper.setSpeed(1000); myStepper.step(-2);}
+    else if (message == "r02") {myStepper.setSpeed(1000); myStepper.step(-4);} 
+    else if (message == "r03") {myStepper.setSpeed(1000); myStepper.step(-6);} 
+    else if (message == "r04") {myStepper.setSpeed(1000); myStepper.step(-8);} 
+    else if (message == "r05") {myStepper.setSpeed(1000); myStepper.step(-10);}
+    else if (message == "r10") {myStepper.setSpeed(1000); myStepper.step(-6);} 
+    else if (message == "r15") {myStepper.setSpeed(1000); myStepper.step(-8);} 
+    else if (message == "r20") {myStepper.setSpeed(1000); myStepper.step(-10);}        
   }
-  delay(500);
+  //delay(500);
 }
