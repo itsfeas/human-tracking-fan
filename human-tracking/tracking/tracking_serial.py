@@ -112,7 +112,7 @@ if __name__ == "__main__":
                 print(radius)
                 cv2.circle(img, center, radius, (0, 0, 255), -1)
                 if vel_check:
-                    prev_pos = (0,0)
+                    prev_pos = (width//2,height//2)
                     calc_pos = center
                     shift = (calc_pos[0]-prev_pos[0],
                              calc_pos[1]-prev_pos[1])
