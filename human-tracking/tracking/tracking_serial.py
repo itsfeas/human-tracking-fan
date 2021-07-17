@@ -125,6 +125,13 @@ if __name__ == "__main__":
                             print("human shifted right by",
                                 100*abs(shift[0]/width), "%")
                             ser.write("r03\n".encode())
+                        elif 100*abs(shift[0]/width) > 2:
+                            prev_pos = current_pos
+                            cv2.circle(img, prev_pos, 5, (255, 0, 0), -1)
+                            current_pos = center
+                            print("human shifted left by",
+                                  100*abs(shift[0]/width), "%")
+                            ser.write("r01\n".encode())
                     elif shift[0] < 0:
                         if 100*abs(shift[0]/width) > 10:
                             prev_pos = current_pos
@@ -133,6 +140,13 @@ if __name__ == "__main__":
                             print("human shifted left by",
                                 100*abs(shift[0]/width), "%")
                             ser.write("l03\n".encode())
+                        elif 100*abs(shift[0]/width) > 2:
+                            prev_pos = current_pos
+                            cv2.circle(img, prev_pos, 5, (255, 0, 0), -1)
+                            current_pos = center
+                            print("human shifted left by",
+                                  100*abs(shift[0]/width), "%")
+                            ser.write("l01\n".encode())
                 else:
                     prev_pos = center
                     current_pos = center
