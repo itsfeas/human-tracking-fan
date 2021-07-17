@@ -29,12 +29,11 @@ if __name__ == "__main__":
 
         # Visualization of the results of a detection.
         pos_data = []
-        while True:
-            cv2.imshow("preview", img)
-            key = cv2.waitKey(0)
-            if key == ord('a'):
-                ser.write("l03\n".encode())
-            elif key == ord('d'):
-                ser.write("r03\n".encode())
-            elif key == ord('q'):
-                break
+        cv2.imshow("preview", img)
+        key = cv2.waitKey(0)
+        if key == ord('a'):
+            ser.write("l03\n".encode())
+        elif key == ord('d'):
+            ser.write("r03\n".encode())
+        elif key == ord('q'):
+            break
