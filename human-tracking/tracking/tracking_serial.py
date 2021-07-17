@@ -90,9 +90,9 @@ if __name__ == "__main__":
     prev_pos = (0, 0)
     current_pos = (0, 0)
     vel_check = False
+    cam_no = 1
+    feed = cv2.VideoCapture(cam_no)
     while True:
-        cam_no = 1
-        feed = cv2.VideoCapture(cam_no)
         r, img = feed.read()
         # img = cv2.resize(img, (1280, 720))
         height, width, channels = img.shape
