@@ -118,6 +118,13 @@ if __name__ == "__main__":
                              calc_pos[1]-prev_pos[1])
                     # print("prev", prev_pos,"current_pos", current_pos)
                     if shift[0] > 0:
+                        if 100*abs(shift[0]/width) > 40:
+                            prev_pos = current_pos
+                            cv2.circle(img, prev_pos, 5, (255, 0, 0), -1)
+                            current_pos = center
+                            print("human shifted right by",
+                                  100*abs(shift[0]/width), "%")
+                            ser.write("r10\n".encode())
                         if 100*abs(shift[0]/width)>10:
                             prev_pos = current_pos
                             cv2.circle(img, prev_pos, 5, (255, 0, 0), -1)
@@ -133,6 +140,13 @@ if __name__ == "__main__":
                                   100*abs(shift[0]/width), "%")
                             ser.write("r01\n".encode())
                     elif shift[0] < 0:
+                        if 100*abs(shift[0]/width) > 40:
+                            prev_pos = current_pos
+                            cv2.circle(img, prev_pos, 5, (255, 0, 0), -1)
+                            current_pos = center
+                            print("human shifted right by",
+                                  100*abs(shift[0]/width), "%")
+                            ser.write("l10\n".encode())
                         if 100*abs(shift[0]/width) > 10:
                             prev_pos = current_pos
                             cv2.circle(img, prev_pos, 5, (255, 0, 0), -1)
