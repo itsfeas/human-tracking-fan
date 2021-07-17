@@ -114,19 +114,21 @@ if __name__ == "__main__":
                     shift = (calc_pos[0]-prev_pos[0],
                              calc_pos[1]-prev_pos[1])
                     # print("prev", prev_pos,"current_pos", current_pos)
-                    if shift[1] > 0:
-                        if 100*abs(shift[1]/width)>0.25:
+                    if shift[0] > 0:
+                        if 100*abs(shift[0]/width)>15:
                             prev_pos = current_pos
+                            cv2.circle(img, prev_pos, 5, (255, 0, 0), -1)
                             current_pos = center
                             print("human shifted right by",
-                                100*abs(shift[1]/width), "%")
+                                100*abs(shift[0]/width), "%")
                             ser.write("r03\n".encode())
-                    elif shift[1] < 0:
-                        if 100*abs(shift[1]/width) > 0.25:
+                    elif shift[0] < 0:
+                        if 100*abs(shift[0]/width) > 15:
                             prev_pos = current_pos
+                            cv2.circle(img, prev_pos, 5, (255, 0, 0), -1)
                             current_pos = center
                             print("human shifted left by",
-                                100*abs(shift[1]/width), "%")
+                                100*abs(shift[0]/width), "%")
                             ser.write("l03\n".encode())
                 else:
                     prev_pos = center

@@ -79,9 +79,9 @@ if __name__ == "__main__":
     prev_pos = (0,0)
     current_pos = (0,0)
     vel_check = False
+    cam_no = 0
+    feed = cv2.VideoCapture(cam_no)
     while True:
-        cam_no = 0
-        feed = cv2.VideoCapture(cam_no)
         r, img = feed.read()
         # img = cv2.resize(img, (1280, 720))
         height, width, channels = img.shape
@@ -103,18 +103,20 @@ if __name__ == "__main__":
                     shift = (calc_pos[0]-prev_pos[0],
                              calc_pos[1]-prev_pos[1])
                     # print("prev", prev_pos,"current_pos", current_pos)
-                    if shift[1] > 0:
-                        if 100*abs(shift[1]/width) > 1:
+                    if shift[0] > 0:
+                        if 100*abs(shift[0]/width) >15:
                             prev_pos = current_pos
+                            cv2.circle(img, prev_pos, 5, (255, 0, 0), -1)
                             current_pos = center
                             print("human shifted right by",
-                                  100*abs(shift[1]/width), "%")
-                    elif shift[1] < 0:
-                        if 100*abs(shift[1]/width) > 1:
+                                  100*abs(shift[0]/width), "%")
+                    elif shift[0] < 0:
+                        if 100*abs(shift[0]/width) >15:
                             prev_pos = current_pos
+                            cv2.circle(img, prev_pos, 5, (255, 0, 0), -1)
                             current_pos = center
                             print("human shifted left by",
-                                  100*abs(shift[1]/width), "%")
+                                  100*abs(shift[0]/width), "%")
                 else:
                     prev_pos = center
                     current_pos = center
