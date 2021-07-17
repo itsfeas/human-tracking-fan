@@ -24,7 +24,7 @@ if __name__ == "__main__":
         r, img = feed.read()
         # img = cv2.resize(img, (1280, 720))
         height, width, channels = img.shape
-        img = cv2.resize(img, (width//4, height//4))
+        img = cv2.resize(img, (width//2, height//2))
         # width, height = width//4, height//4
 
         # Visualization of the results of a detection.
