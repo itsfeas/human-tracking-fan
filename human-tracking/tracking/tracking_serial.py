@@ -90,7 +90,7 @@ if __name__ == "__main__":
     prev_pos = (0, 0)
     current_pos = (0, 0)
     vel_check = False
-    cam_no = 1
+    cam_no = 2
     feed = cv2.VideoCapture(cam_no)
     while True:
         r, img = feed.read()
