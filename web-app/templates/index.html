@@ -4,32 +4,28 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width-device-width, initial-scale = 1.0">
         <title>Human Tracking Fan</title>
-        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
-            <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png"
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
+            <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/icon.png') }}"
     </head>
 
     <body>
-        <center>
-            <div id="info">
-                <button id="engage" onclick="engageSwitch(this)" class="engageButton" type="button">Engage</button>
+        <div class="main">
+            <div class="top">
+                <button id="engage" onclick="engageSwitch(this)" class="prettyButton">Engage</button>
             </div>
-<!-- 
-            <div id="test">
-                <p class="engageButton" type="button">Engage</p>
-            </div> -->
-        </center>
-        <div class="row">
-            <div class="left">
-                <button onclick="turnLeft()" class="dirButton">Left</button>
+            <div class="row">
+                <div class="left">
+                    <button onclick="turnLeft()" class="prettyButton">Left</button>
+                </div>
+                <div class="middle">
+                    <img class="vid" src="{{ url_for('video_feed') }}">
+                </div>
+                <div class="right">
+                    <button onclick="turnRight()" class="prettyButton">Right</button>
+                </div>
             </div>
-            <div class="middle">
-                <img src="{{ url_for('video_feed') }}">
-            </div>
-            <div class="right">
-                <button onclick="turnRight()" class="dirButton">Right</button>
-            </div>
+            <!-- <script type="text/javascript" src="js/script.js"></script> -->
         </div>
-        <!-- <script type="text/javascript" src="js/script.js"></script> -->
         <script type="text/javascript" src="{{ url_for('static', filename='js/manual_controls.js') }}"></script>
     </body>
 </html>
