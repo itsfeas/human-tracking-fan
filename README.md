@@ -1,9 +1,9 @@
-### About
+## About
 This is the codebase used in the development of a Human Tracking Fan! We used a number of different tools, frameworks, programming languages and hardware knowledge to complete this project!
 
-### Languages/Frameworks/Tools
+## Languages/Frameworks/Tools
 
-## Python
+### Python
 additionally used:
 * Flask
 * OpenCV
@@ -11,17 +11,17 @@ additionally used:
 * Numpy
 
 
-## JavaScript
+### JavaScript
 You may need to enable JavaScript in your web browser to run the web app! We used Fetch APIs for communicating between Flask and JavaScript.
 
 
 
-## Arduino (C++)
+### Arduino (C++)
 You don't need to worry about this if you aren't developing a new feature!
 
 
 
-### Instructions
+## Instructions
 
 1 - To run our full program, please cd to the web-app folder
 2 - Connect the fully wired project hardware
