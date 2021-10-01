@@ -4,7 +4,7 @@ This is the codebase used in the development of a Human Tracking Fan! We used a 
 ## Languages/Frameworks/Tools
 
 ### Python
-additionally used:
+Some libraries used:
 * Flask
 * OpenCV
 * Tensorflow
