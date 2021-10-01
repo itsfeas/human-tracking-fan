@@ -4,5 +4,4 @@ __pycache__
 /videos/
 /frames/
 /darknet/
-/resources/ssd_mobilenet_v3_large_coco_2020_01_14/
-/ssd_mobilenet_v3_large_coco_2020_01_14/
+/web-app/resources/
