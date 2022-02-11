@@ -12,7 +12,7 @@ Some libraries used:
 
 
 ### JavaScript
-You may need to enable JavaScript in your web browser to run the web app! We used Fetch APIs for communicating between Flask and JavaScript.
+You may need to enable JavaScript in your web browser to run the desktop app! We used Fetch APIs for communicating between Flask and JavaScript.
 
 
 
